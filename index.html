@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Smart Weather & Travel dashboard showing real-time weather and trip recommendations."
+    />
+    <title>Smart Weather & Travel</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+    <script type="module" src="/main.js" defer></script>
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div class="brand-wrap" aria-label="Smart Weather and Travel dashboard logo">
+          <div class="brand-mark">☁️</div>
+          <div>
+            <h1>Smart Weather & Travel</h1>
+            <p>Real-time travel intelligence at a glance</p>
+          </div>
+        </div>
+
+        <button id="locationButton" type="button" class="secondary-button">
+          Use My Location
+        </button>
+      </header>
+
+      <main class="dashboard">
+        <section class="panel search-panel">
+          <form id="searchForm" class="search-form">
+            <label class="sr-only" for="cityInput">Search city</label>
+            <input
+              id="cityInput"
+              name="city"
+              type="text"
+              placeholder="Search for a city"
+              autocomplete="off"
+            />
+            <button type="submit">Search</button>
+          </form>
+
+          <div class="toolbar-row">
+            <div class="status-badges" aria-live="polite">
+              <span class="status-pill">Live data</span>
+              <span class="status-pill" id="lastUpdatedLabel">Waiting for update</span>
+            </div>
+
+            <div class="unit-toggle" aria-label="Temperature units">
+              <button type="button" class="unit-button active" data-unit="C">°C</button>
+              <button type="button" class="unit-button" data-unit="F">°F</button>
+            </div>
+          </div>
+        </section>
+
+        <div id="alertMessage" class="alert-message" aria-live="polite"></div>
+
+        <section class="panel current-weather-panel">
+          <div id="loadingIndicator" class="loading-indicator hidden" aria-live="polite">
+            Loading live weather data...
+          </div>
+
+          <div class="current-header">
+            <div>
+              <p class="eyebrow">Current weather</p>
+              <h2 id="cityName">--</h2>
+            </div>
+            <div id="weatherIconMain" class="weather-icon-main" aria-label="Weather icon">--</div>
+          </div>
+
+          <div class="temperature-row">
+            <div id="temperatureValue" class="temperature-value">--</div>
+            <div class="temp-meta">
+              <div id="weatherCondition" class="weather-condition">--</div>
+              <div id="weatherDescription" class="weather-description">--</div>
+            </div>
+          </div>
+
+          <div class="feel-row">
+            <span>Feels like</span>
+            <strong id="feelsLikeValue">--</strong>
+          </div>
+
+          <div class="stats-grid">
+            <div class="stat-card">
+              <span>Humidity</span>
+              <strong id="humidityValue">--</strong>
+            </div>
+            <div class="stat-card">
+              <span>Wind</span>
+              <strong id="windValue">--</strong>
+            </div>
+            <div class="stat-card">
+              <span>Pressure</span>
+              <strong id="pressureValue">--</strong>
+            </div>
+            <div class="stat-card">
+              <span>Visibility</span>
+              <strong id="visibilityValue">--</strong>
+            </div>
+            <div class="stat-card">
+              <span>Sunrise</span>
+              <strong id="sunriseValue">--</strong>
+            </div>
+            <div class="stat-card">
+              <span>Sunset</span>
+              <strong id="sunsetValue">--</strong>
+            </div>
+            <div class="stat-card">
+              <span>Cloud cover</span>
+              <strong id="cloudValue">--</strong>
+            </div>
+            <div class="stat-card">
+              <span>Local time</span>
+              <strong id="localTimeValue">--</strong>
+            </div>
+          </div>
+        </section>
+
+        <section class="insights-grid">
+          <article class="panel insight-card">
+            <div class="section-header">
+              <p class="eyebrow">Travel recommendation</p>
+              <h3>Smart suggestion</h3>
+            </div>
+            <div id="travelSuggestion" class="insight-text">
+              Enter a city to get a travel recommendation.
+            </div>
+          </article>
+
+          <article class="panel insight-card">
+            <div class="section-header">
+              <p class="eyebrow">Travel suitability</p>
+              <h3>Rating</h3>
+            </div>
+            <div id="travelSuitability" class="travel-suitability">
+              <span class="rating-tag">--</span>
+              <p id="travelReason">Reason: --</p>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel forecast-panel">
+          <div class="section-header">
+            <p class="eyebrow">Next days</p>
+            <h3>5-day forecast</h3>
+          </div>
+          <div id="forecastGrid" class="forecast-grid" aria-live="polite"></div>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
